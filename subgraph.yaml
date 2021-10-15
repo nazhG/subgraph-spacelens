@@ -1,0 +1,38 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: SpacelensToken
+    network: rinkeby
+    source:
+      address: "0x9a278a678D7F80A65871F6F7b8Bf2AfC6BF2529E"
+      abi: SpacelensToken
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - DispatcherChange
+        - OwnershipTransferred
+        - Paused
+        - PhaseChange
+        - Purchase
+        - Unpaused
+      abis:
+        - name: SpacelensToken
+          file: ./abis/SpacelensToken.json
+      eventHandlers:
+        - event: DispatcherChange(indexed address)
+          handler: handleDispatcherChange
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Paused(address)
+          handler: handlePaused
+        - event: PhaseChange(indexed uint256,uint256,uint256,uint256,bool)
+          handler: handlePhaseChange
+        - event: Purchase(indexed address,uint256,uint256)
+          handler: handlePurchase
+        - event: Unpaused(address)
+          handler: handleUnpaused
+      file: ./src/mapping.ts

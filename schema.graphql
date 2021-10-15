@@ -1,0 +1,36 @@
+type DispatcherChange @entity {
+  id: ID!
+  _dispatcher: Bytes! # address
+}
+
+type OwnershipTransferred @entity {
+  id: ID!
+  previousOwner: Bytes! # address
+  newOwner: Bytes! # address
+}
+
+type Paused @entity {
+  id: ID!
+  account: Bytes! # address
+}
+
+type PhaseChange @entity {
+  id: ID!
+  index: BigInt! # uint256
+  _discount: BigInt! # uint256
+  _endAt: BigInt! # uint256
+  _supply: BigInt! # uint256
+  _over: Boolean! # bool
+}
+
+type Purchase @entity {
+  id: ID!
+  _account: Bytes! # address
+  _amount: BigInt! # uint256
+  _price: BigInt! # uint256
+}
+
+type Unpaused @entity {
+  id: ID!
+  account: Bytes! # address
+}

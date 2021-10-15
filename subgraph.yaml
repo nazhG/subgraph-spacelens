@@ -1,4 +1,4 @@
-specVersion: 0.0.1
+specVersion: 0.0.2
 schema:
   file: ./schema.graphql
 dataSources:
@@ -13,26 +13,11 @@ dataSources:
       apiVersion: 0.0.5
       language: wasm/assemblyscript
       entities:
-        - DispatcherChange
-        - OwnershipTransferred
-        - Paused
-        - PhaseChange
-        - Purchase
-        - Unpaused
+        - Holder
       abis:
         - name: SpacelensToken
           file: ./abis/SpacelensToken.json
       eventHandlers:
-        - event: DispatcherChange(indexed address)
-          handler: handleDispatcherChange
-        - event: OwnershipTransferred(indexed address,indexed address)
-          handler: handleOwnershipTransferred
-        - event: Paused(address)
-          handler: handlePaused
-        - event: PhaseChange(indexed uint256,uint256,uint256,uint256,bool)
-          handler: handlePhaseChange
         - event: Purchase(indexed address,uint256,uint256)
           handler: handlePurchase
-        - event: Unpaused(address)
-          handler: handleUnpaused
       file: ./src/mapping.ts
